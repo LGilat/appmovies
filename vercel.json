@@ -20,7 +20,7 @@
           },
         {
         "src": "/(.*)",
-        "dest": "project/wsgi.py"
+        "dest": "appmovies/wsgi.py"
         }
     ]
 
