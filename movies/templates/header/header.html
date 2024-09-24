@@ -1,0 +1,55 @@
+
+
+
+{% block header %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}" onKeyPress="return false;">CineMágico</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'popular_movies' %}" onKeyPress="return false;">Películas Populares</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'upcoming_movies' %}" onKeyPress="return false;">Próximos Estrenos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Géneros
+                        </button>
+                        <ul class="dropdown-menu">
+                            {%if genres %}
+                                {% for genre in genres %}
+                                <li class="border-bottom border-dark">
+                                    <a class="dropdown-item" href="{% url 'genre_movies' genre.id %}" onKeyPress="return false;">
+                                    <i class="fas fa-film fa-fw me-2"></i> {{ genre.name }}</a></li>
+                                {% endfor %}
+                            {% else %}
+                            <li><a class="dropdown-item" href="#" onKeyPress="return false;">
+                                <i class="fas fa-exclamation-circle fa-fw me-4"></i>No hay géneros</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'nowplaying_movies' %}" onKeyPress="return false;">En cartelera</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onKeyPress="return false;">Sobre Nosotros</a>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-flex" action="{% url 'search_movies' %}" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Buscar película" aria-label="Search" name="query">
+                <button class="btn btn-outline-light" type="submit">Buscar</button>
+            </form>
+
+        </div>
+    </nav>
+
+
+
+{% endblock %}

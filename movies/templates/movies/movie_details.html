@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" class="img-fluid rounded" alt="{{ movie.title }}">
+        </div>
+        <div class="col-md-8">
+            <h1 class="mb-3">{{ movie.title }}</h1>
+            <p class="lead">{{ movie.tagline }}</p>
+            <p><strong>Fecha de lanzamiento:</strong> {{ movie.release_date }}</p>
+            <p><strong>Duración:</strong> {{ movie.runtime }} minutos</p>
+            <p><strong>Géneros:</strong> 
+                {% for genre in movie.genres %}
+                <a class="link" href="{% url 'genre_movies' genre.id %}" onKeyPress="return false;"> {{ genre.name }} </a>
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <p><strong>Calificación:</strong> {{ movie.vote_average|floatformat:1 }}/10 ({{ movie.vote_count }} votos)</p>
+            <h3 class="mt-4">Sinopsis</h3>
+            <p>{{ movie.overview }}</p>
+            {% if movie.homepage %}
+                <a href="{{ movie.homepage }}" class="btn btn-primary" target="_blank">Sitio web oficial</a>
+            {% endif %}
+            <div class="row"> 
+                <h3 class="mt-4">Compañias</h3>
+                {% for company in movie.production_companies %}
+                    <div class="col-md-2 m-3">
+                        <img src="https://image.tmdb.org/t/p/w200{{ company.logo_path }}" class="img-fluid rounded" alt="{{ company.name }}" width="64" height="32"/>
+                        <p class="text-muted small">{{ company.name }}</p>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <h3 class="mt-5">Reparto principal</h3>
+    <div class="row">
+        {% for actor in cast %}
+            <div class="col-md-2 mb-3">
+                <img src="https://image.tmdb.org/t/p/w200{{ actor.profile_path }}" class="img-fluid rounded" alt="{{ actor.name }}">
+                <p class="mt-2"><strong>{{ actor.name }}</strong><br>{{ actor.character }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
