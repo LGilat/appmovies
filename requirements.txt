@@ -29,5 +29,5 @@ typing_extensions==4.7.1
 urllib3==2.2.3
 Werkzeug==2.3.7
 WTForms==3.0.1
-sqlite3>=3.35.0
+
 
