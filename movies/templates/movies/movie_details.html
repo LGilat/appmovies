@@ -42,7 +42,7 @@
         {% for actor in cast %}
             <div class="col-md-2 mb-3">
                 <img src="https://image.tmdb.org/t/p/w200{{ actor.profile_path }}" class="img-fluid rounded" alt="{{ actor.name }}">
-                <p class="mt-2"><strong>{{ actor.name }}</strong><br>{{ actor.character }}</p>
+                <p class="mt-2"><strong>  <a href="{% url 'get_actor_films' actor.id %}" title="{{actor.name}}">  {{ actor.name }} </a> </strong><br>{{ actor.character }}</p>
             </div>
         {% endfor %}
     </div>

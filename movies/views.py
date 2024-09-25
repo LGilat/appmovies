@@ -96,6 +96,19 @@ def genre_movies(request, genre_id):
     return render(request, 'movies/genre_movies.html', {'movies': movies})
 
 
+def get_actor_films(request, actor_id):
+    url = f"https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_cast={actor_id}"
+    actor_details= f"https://api.themoviedb.org/3/person/{actor_id}?language=en-US"
+    
+    headers = {
+        "accept": ACCEPT,
+        "Authorization": AUTHORIZATION,
+    }
+    response = requests.get(url, headers=headers)
+    actor_response = requests.get(actor_details, headers=headers)
+    movies = response.json().get('results', []);
+    actor_details = actor_response.json();
+    return render(request, 'movies/actor_movies.html', {'movies': movies, 'actor_details': actor_details})
 
 def index(request):
     return render(request, 'movies/index.html') 
