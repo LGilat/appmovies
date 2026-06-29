@@ -29,6 +29,19 @@ DEBUG = True
 # api/settings.py
 ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'appmovies-locmem-cache',
+        'TIMEOUT': 60 * 10,
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+        },
+    }
+}
+
+TMDB_AUTHORIZATION = os.environ.get('TMDB_AUTHORIZATION')
+
 
 # Application definition
 
@@ -50,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'movies.middleware.CacheControlMiddleware',
 ]
 
 ROOT_URLCONF = 'appmovies.urls'
