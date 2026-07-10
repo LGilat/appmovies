@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8k(b*zxzqv5+_7yut_m9&-l#0=7-#kp$8so8z(9hyxqq_12pm%
 DEBUG = True
 
 # api/settings.py
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'appmovies-k983.onrender.com',]
 
 CACHES = {
     'default': {
