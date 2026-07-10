@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8k(b*zxzqv5+_7yut_m9&-l#0=7-#kp$8so8z(9hyxqq_12pm%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # api/settings.py
 ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'appmovies-k983.onrender.com',]
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'appmovies.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
